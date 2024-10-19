@@ -1,3 +1,5 @@
+import { logo } from "@/utils/exports/logos";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -44,7 +46,18 @@ const Navbar = () => {
                             {menu}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">Me-Commerce</a>
+                    <a className="btn btn-ghost text-xl">
+                        <Image
+                            src={logo}
+                            width={50}
+                            height={50}
+                            alt="Picture of the author"
+                        />
+                        <span>
+
+                        Me-Commerce
+                        </span>
+                    </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">{menu}</ul>
