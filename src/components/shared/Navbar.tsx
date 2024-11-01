@@ -55,7 +55,7 @@ const Navbar = () => {
                         />
                         <span>
 
-                        Me-Commerce
+                        MeCommerce
                         </span>
                     </a>
                 </div>
