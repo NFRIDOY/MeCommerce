@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import Link from 'next/link';
+import Link from "next/link";
 import { TProduct } from "@/types/product.interface";
 import Image from "next/image";
 import { addToCart } from "@/lib/redux/features/cartSlice/cartSlice";
@@ -16,18 +16,23 @@ const ProductCard = ({ product }: ProductCardProps) => {
     // }
 
     return (
-        <div className="card card-compact bg-base-100  max-h-96 my-auto w-48 md:w-72 mx-auto shadow-md rounded-b-none border-b-4 border-b-primary">
+        <div className="card card-compact bg-base-100  max-h-96 my-auto w-48 md:w-72 mx-auto shadow-md rounded-b-none hover:border-2 border-b-primary">
             <Link href={`/products/${product?._id}`}>
                 <figure>
-                    <   Image 
+                    <Image
                         src={product?.images}
                         alt={product?.name}
                         className="object-cover h-40 w-full rounded-2xl hover:scale-105 hover:transition-all hover:duration-200 hover:ease-in-out hover:delay-100"
+                        width={1200}
+                        height={1200}
+                        layout="responsive"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </figure>
             </Link>
             <div className="card-body">
-                <Link href={`/products/${product?._id}`}
+                <Link
+                    href={`/products/${product?._id}`}
                     className="cards-title flex justify-between items-center">
                     {product?.name}
                     <div className="">
@@ -39,24 +44,23 @@ const ProductCard = ({ product }: ProductCardProps) => {
                     {product?.description}
                 </Link> */}
                 <div className="flex justify-between">
-                    
-                    <div className="card-actions justify-end">
-                        {/* <button className="btn btn-primary" onClick={() => handleAddToCart(product)}>Buy Now</button> */}
+                    <div className="card-actions  w-full">
+                        {/* <button className="btn btn-primary" onClick={() => handleAddToCart(product)}>Order Now</button> */}
                         {product?.stockQuantity ? (
                             <button
-                                className="btn btn-primary"
+                                className="btn btn-primary  w-full"
                                 onClick={() =>
                                     dispatch(
                                         addToCart({ ...product, quantity: 1 })
                                     )
                                 }>
-                                Buy Now
+                                Order Now
                             </button>
                         ) : (
                             <button
-                                className="btn btn-primary"
+                                className="btn btn-primary w-full"
                                 onClick={() => alert("Shock Out")}>
-                                Buy Now
+                                Order Now
                             </button>
                         )}
                     </div>

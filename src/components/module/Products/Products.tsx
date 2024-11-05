@@ -3,6 +3,7 @@
 import { useGetProductsQuery } from '@/lib/redux/api/api';
 import { TProduct } from '@/types/product.interface';
 import React from 'react';
+import ProductCard from './ProductCard';
 
 const Products = () => {
     const {data: productsData } = useGetProductsQuery("");
@@ -10,11 +11,10 @@ const Products = () => {
     // if (!isLoading) return <div>Loading...</div>
     return (
         <div>
-            Products is loading
-            <div>
+            <div className='grid grid-cols-3'>
                 {
                     productsData?.data?.map((product: TProduct) => <div key={product.name}>
-                        <div>{product.name}</div>
+                        <ProductCard product={product} />
                     </div>)
                 }
             </div>
