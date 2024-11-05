@@ -16,8 +16,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
     // }
 
     return (
-        <div className="card card-compact bg-base-100  max-h-96 my-auto w-48 md:w-72 mx-auto shadow-md rounded-b-none hover:border-2 border-b-primary">
-            <Link href={`/products/${product?._id}`}>
+        <Link href={`/products/${product?._id}`}>
+            <div className="card card-compact bg-base-100  max-h-96 my-auto w-48 md:w-72 mx-auto shadow-md rounded-b-none hover:border-2 border-b-primary">
                 <figure>
                     <Image
                         src={product?.images}
@@ -29,44 +29,44 @@ const ProductCard = ({ product }: ProductCardProps) => {
                         sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </figure>
-            </Link>
-            <div className="card-body">
-                <Link
-                    href={`/products/${product?._id}`}
-                    className="cards-title flex justify-between items-center">
-                    {product?.name}
-                    <div className="">
-                        BDT.{" "}
-                        <span className="text-primary">{product?.price}</span>
-                    </div>
-                </Link>
-                {/* <Link href={`/products/${product?._id}`}>
+                <div className="card-body">
+                    <Link
+                        href={`/products/${product?._id}`}
+                        className="cards-title flex justify-between items-center">
+                        {product?.name}
+                        <div className="">
+                            BDT.{" "}
+                            <span className="text-primary">{product?.price}</span>
+                        </div>
+                    </Link>
+                    {/* <Link href={`/products/${product?._id}`}>
                     {product?.description}
                 </Link> */}
-                <div className="flex justify-between">
-                    <div className="card-actions  w-full">
-                        {/* <button className="btn btn-primary" onClick={() => handleAddToCart(product)}>Order Now</button> */}
-                        {product?.stockQuantity ? (
-                            <button
-                                className="btn btn-primary  w-full"
-                                onClick={() =>
-                                    dispatch(
-                                        addToCart({ ...product, quantity: 1 })
-                                    )
-                                }>
-                                Order Now
-                            </button>
-                        ) : (
-                            <button
-                                className="btn btn-primary w-full"
-                                onClick={() => alert("Shock Out")}>
-                                Order Now
-                            </button>
-                        )}
+                    <div className="flex justify-between">
+                        <div className="card-actions  w-full">
+                            {/* <button className="btn btn-primary" onClick={() => handleAddToCart(product)}>Order Now</button> */}
+                            {product?.stockQuantity ? (
+                                <button
+                                    className="btn btn-primary  w-full"
+                                    onClick={() =>
+                                        dispatch(
+                                            addToCart({ ...product, quantity: 1 })
+                                        )
+                                    }>
+                                    Order Now
+                                </button>
+                            ) : (
+                                <button
+                                    className="btn btn-primary w-full"
+                                    onClick={() => alert("Shock Out")}>
+                                    Order Now
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
