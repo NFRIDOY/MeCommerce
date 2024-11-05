@@ -18,19 +18,6 @@ export const baseApi = createApi({
             }),
         }),
 
-        bookByProductsId: builder.mutation({
-            query: (bookingReq) => ({
-                url: `/bookings/create-booking`, //! change url
-                method: "POST",
-                body: {
-                    products: bookingReq?.products,
-                    startTime: bookingReq.startTime,
-                    endTime: bookingReq.endTime,
-                    date: new Date()
-                }
-            }),
-        }),
-
         getProducts: builder.query({
             query: () => ({
                 url: "/products",
@@ -61,6 +48,5 @@ export const {
     useGetProductsByIdQuery,
     useGetProductsQuery,
     usePostUserLoginMutation,
-    usePostUserRegisterMutation,
-    useBookByProductsIdMutation
+    usePostUserRegisterMutation
 } = baseApi;
