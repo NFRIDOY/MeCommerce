@@ -1,6 +1,7 @@
 'use client'
 
 import { useGetProductsQuery } from '@/lib/redux/api/api';
+import { TProduct } from '@/types/product.interface';
 import React from 'react';
 
 const Products = () => {
