@@ -1,7 +1,5 @@
 'use client'
 
-import AddProductForm from "../module/Forms/AddProductForm";
-import AddCategoryForm from "../module/Forms/AddCategoryForm";
 
 // import PaginationDynamicBanner from "./../../components/layouts/Banners/PaginationDynamicBanner";
 const AdminDashboard = () => {
@@ -109,7 +107,6 @@ const AdminDashboard = () => {
     // };
     return (
         <div className="h-full w-full bg-slate-100 ">
-            admin d
             <div className="h-1/2 flex flex-col lg:flex-row justify-between items-center w-fit border-0 mx-auto">
                 <div className="w-full mt-10 ml-10">
                     {/* <AddProductForm /> */}
