@@ -19,8 +19,8 @@ const Sidebar = () => {
         </>
     );
     return (
-        <div className="h-full">
-            <ul className="menu bg-base-200  w-56">{menu}</ul>
+        <div className="h-screen">
+            <ul className="menu bg-base-200 h-screen w-56">{menu}</ul>
         </div>
     );
 };
