@@ -72,8 +72,7 @@ const Navbar = () => {
                                 ""
                             ) : (
                                 <div className="card-actions">
-                                    <Link
-                                        to={"/cart"}
+                                    <Link href={"/cart"}
                                         className="btn btn-primary btn-block">
                                         View Cart
                                     </Link>
