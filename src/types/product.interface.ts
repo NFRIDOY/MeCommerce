@@ -4,6 +4,7 @@ export type category = {
 };
 
 export interface TProduct {
+    _id?: string;
     name: string;
     description: string;
     price: number;
