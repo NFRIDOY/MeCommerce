@@ -10,17 +10,17 @@ import { addToCart } from '@/lib/redux/features/cartSlice/cartSlice';
 
 const ProductDetails = ({ id }:{ id:string }) => {
 
-    const {data:productData} = useGetProductsByIdQuery(id);
+    const {isLoading, data:productData} = useGetProductsByIdQuery(id);
     // const {data:product} = productData;
 
     console.log("productData", productData)
     // console.log("product", product)
 
     const dispatch = useDispatch();
-
+if(isLoading) return <>Loading...</>
     return (
         <>
-            <div className="card card-compact bg-base-100   my-auto min-w-full md:w-72 mx-auto shadow-md rounded-b-none flex flex-row py-20">
+            <div className="card card-compact bg-base-100 my-auto  lg:min-w-full md:w-72 mx-auto shadow-md rounded-b-none flex flex-row justify-between py-0">
                 <figure>
                     <Image
                         src={productData?.data?.images}
@@ -32,19 +32,15 @@ const ProductDetails = ({ id }:{ id:string }) => {
                         sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </figure>
-                <div className="card-body">
-                    <Link
-                        href={`/products/${productData?.data?._id}`}
+                <div className="card-body ">
+                    <div
                         className="cards-title flex justify-between items-center">
                         {productData?.data?.name}
                         <div className="">
                             BDT.{" "}
                             <span className="text-primary">{productData?.data?.price}</span>
                         </div>
-                    </Link>
-                    {/* <Link href={`/products/${productData?.data?._id}`}>
-                    {productData?.data?.description}
-                </Link> */}
+                    </div>
                     <div className="flex justify-between">
                         <div className="card-actions  w-full">
                             {productData?.data?.stockQuantity ? (
@@ -55,13 +51,13 @@ const ProductDetails = ({ id }:{ id:string }) => {
                                             addToCart({ ...productData?.data, quantity: 1 })
                                         )
                                     }>
-                                    Order Now
+                                    Add To Cart
                                 </button>
                             ) : (
                                 <button
-                                    className="btn btn-primary w-full"
+                                    className="btn btn-error w-full"
                                     onClick={() => alert("Shock Out")}>
-                                    Order Now
+                                    Add To Cart
                                 </button>
                             )}
                         </div>
