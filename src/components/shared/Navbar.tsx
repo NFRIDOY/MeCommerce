@@ -164,7 +164,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <div>{profile}</div>
-                    <a className="btn">Login</a>
+                    <Link href="/admin" className="btn">Login</Link>
                 </div>
             </div>
         </div>

@@ -2,10 +2,10 @@ import Footer from '@/components/shared/Footer';
 import Navbar from '@/components/shared/Navbar';
 import React, { ReactNode } from 'react';
 
-const CoommonLayout = ({ children }: { children: ReactNode }) => {
+const HomeLayout = ({ children }: { children: ReactNode }) => {
     return (
         <div>
-            {/* <Navbar /> */}
+            <Navbar />
             <div className="min-h-screen">
                 {children}
             </div>
@@ -14,4 +14,4 @@ const CoommonLayout = ({ children }: { children: ReactNode }) => {
     );
 };
 
-export default CoommonLayout;
+export default HomeLayout;
