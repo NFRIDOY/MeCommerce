@@ -1,18 +1,20 @@
-import React from 'react';
+
+import ProductDetails from "@/components/module/Products/ProductDetails";
+import React from "react";
 
 interface TProps {
     params: {
-      id: string;
+        id: string;
     };
-  }
+}
 
-const ProductDetailsPage = ({params : {id}}: TProps) => {
+const ProductDetailsPage = ({ params: { id } }: TProps) => {
+
+    
+
     return (
-        <div>
-            details
-            {id}
-        </div>
-    );
+        <ProductDetails id={id} />
+    )
 };
 
 export default ProductDetailsPage;
