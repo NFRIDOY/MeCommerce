@@ -5,7 +5,7 @@ export const baseApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl:
             process.env.NODE_ENV === "production"
-            ? `${process.env.LOCAL_SERVER_URL}`
+            ? `${process.env.GLOBAL_SERVER_URL}`
             : `http://localhost:5000/api`,
 
         credentials: "include", // Include cookies with requests
