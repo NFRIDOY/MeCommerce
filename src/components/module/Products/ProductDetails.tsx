@@ -1,26 +1,27 @@
-'use client'
+"use client";
 
-import React from 'react';
+import React from "react";
 import { useGetProductsByIdQuery } from "@/lib/redux/api/api";
 import Image from "next/image";
-import Link from 'next/link';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '@/lib/redux/features/cartSlice/cartSlice';
+import { useDispatch } from "react-redux";
+import {
+    addToCart, 
+} from "@/lib/redux/features/cartSlice/cartSlice";
 
-
-const ProductDetails = ({ id }:{ id:string }) => {
-
-    const {isLoading, data:productData} = useGetProductsByIdQuery(id);
+const ProductDetails = ({ id }: { id: string }) => {
+    const { isLoading, data: productData } = useGetProductsByIdQuery(id);
     // const {data:product} = productData;
 
-    console.log("productData", productData)
+    console.log("productData", productData);
     // console.log("product", product)
 
+    
+    // const { cart } = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
-if(isLoading) return <>Loading...</>
+    if (isLoading) return <>Loading...</>;
     return (
         <>
-            <div className="card card-compact bg-base-100 my-auto  lg:min-w-full md:w-72 mx-auto shadow-md rounded-b-none flex flex-row justify-between py-0">
+            <div className="card card-compact bg-base-100 my-auto lg:min-h-96  lg:min-w-full md:w-72 mx-auto shadow-md rounded-b-none flex flex-row justify-between py-0">
                 <figure>
                     <Image
                         src={productData?.data?.images}
@@ -32,23 +33,30 @@ if(isLoading) return <>Loading...</>
                         sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </figure>
-                <div className="card-body ">
-                    <div
-                        className="cards-title flex justify-between items-center">
+                <div className="card-body w-1/2 border-2">
+                    <div className="cards-title flex justify-between items-center text-5xl">
                         {productData?.data?.name}
                         <div className="">
                             BDT.{" "}
-                            <span className="text-primary">{productData?.data?.price}</span>
+                            <span className="text-primary">
+                                {productData?.data?.price}
+                            </span>
                         </div>
                     </div>
-                    <div className="flex justify-between">
-                        <div className="card-actions  w-full">
+                    <div className="cards-title flex justify-between items-center my-10">
+                        {productData?.data?.description}
+                    </div>
+                    <div className="flex justify-end ">
+                        <div className="card-actions">
                             {productData?.data?.stockQuantity ? (
                                 <button
                                     className="btn btn-primary  w-full"
                                     onClick={() =>
                                         dispatch(
-                                            addToCart({ ...productData?.data, quantity: 1 })
+                                            addToCart({
+                                                ...productData?.data,
+                                                quantity: 1,
+                                            })
                                         )
                                     }>
                                     Add To Cart
@@ -61,6 +69,7 @@ if(isLoading) return <>Loading...</>
                                 </button>
                             )}
                         </div>
+                
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { RootState } from "@/lib/redux/store";
 import { logo } from "@/utils/exports/logos";
@@ -30,7 +30,7 @@ const Navbar = () => {
     const profile = (
         <>
             <div className="flex-none">
-                <div className="dropdown dropdown-end">
+                <div className="dropdown dropdown-end indicator">
                     <div
                         tabIndex={0}
                         role="button"
@@ -72,7 +72,8 @@ const Navbar = () => {
                                 ""
                             ) : (
                                 <div className="card-actions">
-                                    <Link href={"/cart"}
+                                    <Link
+                                        href={"/cart"}
                                         className="btn btn-primary btn-block">
                                         View Cart
                                     </Link>
@@ -80,6 +81,11 @@ const Navbar = () => {
                             )}
                         </div>
                     </div>
+                    {cartItems?.length > 0 && (
+                        <span className="badge badge-sm indicator-item">
+                            {cartItems?.length}
+                        </span>
+                    )}
                 </div>
                 <div className="dropdown dropdown-end">
                     <div
@@ -98,12 +104,15 @@ const Navbar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[11] mt-3 w-52 p-2 shadow space-y-3">
                         <li>
-                            <Link href={"/"} className="btn btn-secondary btn-sm">
+                            <Link
+                                href={"/"}
+                                className="btn btn-secondary btn-sm">
                                 Home
                             </Link>
                         </li>
                         <li>
-                            <Link href={"/admin/dashboard"}
+                            <Link
+                                href={"/admin/dashboard"}
                                 className="btn btn-secondary btn-sm">
                                 Admin Dashboard
                             </Link>
@@ -164,7 +173,9 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <div>{profile}</div>
-                    <Link href="/admin" className="btn">Login</Link>
+                    <Link href="/admin" className="btn">
+                        Login
+                    </Link>
                 </div>
             </div>
         </div>

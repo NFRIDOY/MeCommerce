@@ -25,12 +25,10 @@ export const cartSlice = createSlice({
                 (item) => item._id === action.payload._id
             );
             // if (existingItem?.inventory.quantity) {
-            if (true) {
-                if (existingItem) {
-                    existingItem.quantity += action.payload.quantity;
-                } else {
-                    state.products.push(action.payload);
-                }
+            if (existingItem) {
+                existingItem.quantity += action.payload.quantity;
+            } else {
+                state.products.push(action.payload);
             }
 
             state.totalAmount += action.payload.price * action.payload.quantity;
