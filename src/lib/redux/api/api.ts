@@ -39,6 +39,14 @@ export const baseApi = createApi({
             }),
         }),
 
+        postCategory: builder.mutation({
+            query: (category) => ({
+                url: `/category/`,
+                method: "POST",
+                body: category,
+            }),
+        }),
+
         
 
         postUserLogin: builder.mutation({
@@ -65,6 +73,7 @@ export const {
     useGetProductsQuery,
     useGetCategoriesQuery,
     useGetCategoryByIdQuery,
+    usePostCategoryMutation,
     usePostUserLoginMutation,
     usePostUserRegisterMutation
 } = baseApi;
