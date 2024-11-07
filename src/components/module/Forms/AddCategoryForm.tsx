@@ -1,7 +1,7 @@
 'use client'
 
 import { SuccessAlert } from "@/components/ui/Alerts/SuccessAlert";
-import { usePostCategoryMutation } from "@/lib/redux/api/api";
+import { useGetCategoriesQuery, usePostCategoryMutation } from "@/lib/redux/api/api";
 import { FormEvent, useState } from "react";
 
 export type TInventory = {
@@ -23,7 +23,12 @@ export default function AddCategoryForm() {
         }
     ] = usePostCategoryMutation()
 
-    const handleSubmit = (e: FormEvent) => {
+    const {
+        // data: categoryData, 
+        refetch
+     } = useGetCategoriesQuery("");
+
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         const formData = {
             name: title,
@@ -37,8 +42,9 @@ export default function AddCategoryForm() {
 
         console.log("postCategoryData:", postCategoryData);
 
-        <SuccessAlert />
+        await SuccessAlert ("Successful")
 
+        refetch()
 
         // axios.post("/category", formData).then((res) => {
         //     // console.log(res);
