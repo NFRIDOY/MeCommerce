@@ -44,10 +44,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 </Link> */}
                     <div className="flex justify-between">
                         <div className="card-actions  w-full">
-                            {/* <button className="btn btn-primary" onClick={() => handleAddToCart(product)}>Order Now</button> */}
+                            {/* <button className="btn btn-accent" onClick={() => handleAddToCart(product)}>Order Now</button> */}
                             {product?.stockQuantity ? (
                                 <button
-                                    className="btn btn-primary  w-full"
+                                    className="btn btn-accent  w-full"
                                     onClick={() =>
                                         dispatch(
                                             addToCart({ ...product, quantity: 1 })
@@ -57,7 +57,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                                 </button>
                             ) : (
                                 <button
-                                    className="btn btn-primary w-full"
+                                    className="btn btn-accent w-full"
                                     onClick={() => alert("Shock Out")}>
                                     Order Now
                                 </button>

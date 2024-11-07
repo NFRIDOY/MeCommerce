@@ -74,7 +74,7 @@ const Navbar = () => {
                                 <div className="card-actions">
                                     <Link
                                         href={"/cart"}
-                                        className="btn btn-primary btn-block">
+                                        className="btn btn-accent btn-block">
                                         View Cart
                                     </Link>
                                 </div>

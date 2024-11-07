@@ -11,19 +11,35 @@ export const baseApi = createApi({
         credentials: "include", // Include cookies with requests
     }),
     endpoints: (builder) => ({
-        getProductsById: builder.query({
-            query: (id) => ({
-                url: `/products/${id}`,
+        getProducts: builder.query({
+            query: () => ({
+                url: "/product",
                 method: "GET",
             }),
         }),
 
-        getProducts: builder.query({
-            query: () => ({
-                url: "/products",
+        getProductsById: builder.query({
+            query: (id) => ({
+                url: `/product/${id}`,
                 method: "GET",
             }),
         }),
+
+        getCategories: builder.query({
+            query: () => ({
+                url: "/category",
+                method: "GET",
+            }),
+        }),
+
+        getCategoryById: builder.query({
+            query: (id) => ({
+                url: `/category/${id}`,
+                method: "GET",
+            }),
+        }),
+
+        
 
         postUserLogin: builder.mutation({
             // how do I get the response from the server
@@ -47,6 +63,8 @@ export const baseApi = createApi({
 export const {
     useGetProductsByIdQuery,
     useGetProductsQuery,
+    useGetCategoriesQuery,
+    useGetCategoryByIdQuery,
     usePostUserLoginMutation,
     usePostUserRegisterMutation
 } = baseApi;

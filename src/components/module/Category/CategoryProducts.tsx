@@ -8,7 +8,7 @@ import {
     addToCart, 
 } from "@/lib/redux/features/cartSlice/cartSlice";
 
-const ProductDetails = ({ id }: { id: string }) => {
+const CategoryProducts = ({ id }: { id: string }) => {
     const { isLoading, data: productData } = useGetProductsByIdQuery(id);
     // const {data:product} = productData;
 
@@ -77,4 +77,4 @@ const ProductDetails = ({ id }: { id: string }) => {
     );
 };
 
-export default ProductDetails;
+export default CategoryProducts;
