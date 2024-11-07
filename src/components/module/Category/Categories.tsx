@@ -12,6 +12,7 @@ const Categories = () => {
     // if (!isLoading) return <div>Loading...</div>
     return (
         <div>
+            
             <div className='grid grid-cols-6'>
                 {
                     categoryData?.data?.map((category: TCategory) => <div key={category?._id}>

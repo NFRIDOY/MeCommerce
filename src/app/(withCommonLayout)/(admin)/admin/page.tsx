@@ -4,7 +4,7 @@ import React from "react";
 
 const Admin = () => {
     return (
-        <div className="w-full h-full border-2 flex flex-col justify-center">
+        <div className="w-full h-full border-0 flex flex-col justify-center">
             {/* <AdminDashboard /> */}
             <h1 className="text-center w-full text-6xl my-10">
                 Welcome To Admin Pannel

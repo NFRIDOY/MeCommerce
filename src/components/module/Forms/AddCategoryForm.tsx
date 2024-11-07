@@ -1,5 +1,6 @@
 'use client'
 
+import { SuccessAlert } from "@/components/ui/Alerts/SuccessAlert";
 import { usePostCategoryMutation } from "@/lib/redux/api/api";
 import { FormEvent, useState } from "react";
 
@@ -18,21 +19,25 @@ export default function AddCategoryForm() {
         {
             data: postCategoryData,
             // isLoading
+            
         }
     ] = usePostCategoryMutation()
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         const formData = {
-            title,
-            image,
+            name: title,
+            images: image,
         };
         console.log("Form Data:", formData);
-        console.log("postCategoryData:", postCategoryData);
         // You can add your form submission logic here, like sending the data to an API
-
+        
         // Send Data to server RTX 
         postCategory(formData)
+
+        console.log("postCategoryData:", postCategoryData);
+
+        <SuccessAlert />
 
 
         // axios.post("/category", formData).then((res) => {

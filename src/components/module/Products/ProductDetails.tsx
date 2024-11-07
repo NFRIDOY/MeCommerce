@@ -33,7 +33,7 @@ const ProductDetails = ({ id }: { id: string }) => {
                         sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </figure>
-                <div className="card-body w-1/2 border-2">
+                <div className="card-body w-1/2 border-0">
                     <div className="cards-title flex justify-between items-center text-5xl">
                         {productData?.data?.name}
                         <div className="">
