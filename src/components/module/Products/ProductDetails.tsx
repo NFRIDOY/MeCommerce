@@ -21,7 +21,7 @@ const ProductDetails = ({ id }: { id: string }) => {
     if (isLoading) return <>Loading...</>;
     return (
         <>
-            <div className="card card-compact bg-base-100 my-auto lg:min-h-96  lg:min-w-full md:w-72 mx-auto shadow-md rounded-b-none flex flex-row justify-between py-0">
+            <div className="card card-compact bg-base-100 my-auto lg:min-h-96  lg:min-w-full md:w-72 mx-auto shadow-none rounded-b-none flex flex-row justify-between py-0">
                 <figure>
                     <Image
                         src={productData?.data?.images}

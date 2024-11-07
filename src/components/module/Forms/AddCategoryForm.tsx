@@ -38,7 +38,7 @@ export default function AddCategoryForm() {
         // You can add your form submission logic here, like sending the data to an API
         
         // Send Data to server RTX 
-        postCategory(formData)
+        await postCategory(formData)
 
         console.log("postCategoryData:", postCategoryData);
 
