@@ -112,6 +112,13 @@ const Navbar = () => {
                         </li>
                         <li>
                             <Link
+                                href={"/user/dashboard"}
+                                className="btn btn-secondary btn-sm">
+                                User Dashboard
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
                                 href={"/admin/dashboard"}
                                 className="btn btn-secondary btn-sm">
                                 Admin Dashboard

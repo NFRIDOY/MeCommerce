@@ -4,8 +4,10 @@ import React, { ReactNode } from 'react';
 const AdminLayout = ({ children }: { children: ReactNode }) => {
     return (
         <div className="flex w-screen min-h-screen">
-            <Sidebar />
             <div className="">
+                <Sidebar />
+            </div>
+            <div className="w-full">
                 {children}
             </div>
         </div>
