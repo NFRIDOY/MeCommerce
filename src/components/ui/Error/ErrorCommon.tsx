@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
+
 
 const ErrorCommon = () => {
     return (
@@ -14,7 +15,7 @@ const ErrorCommon = () => {
                     <p className="text-gray-500 mt-8 py-2 border-y-2 text-center">
                         Whoops, something went wrong on our servers.
                     </p>
-                    <Link to={"/"} className="btn primary-btn mt-8 py-2">
+                    <Link href={"/"} className="btn primary-btn mt-8 py-2">
                         Go Back
                     </Link>
                 </div>

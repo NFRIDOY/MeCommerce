@@ -1,23 +1,20 @@
-'use client'
+"use client";
 
-import { useGetCategoriesQuery } from '@/lib/redux/api/api';
-import React from 'react';
-import Link from 'next/link';
-import { TCategory } from '@/types/category.interface';
-import Image from 'next/image';
+import { useGetCategoriesQuery } from "@/lib/redux/api/api";
+import React from "react";
+import Link from "next/link";
+import { TCategory } from "@/types/category.interface";
+import Image from "next/image";
 
 const Categories = () => {
-    const {
-        data: categoryData, 
-     } = useGetCategoriesQuery("");
-    console.log(categoryData)
+    const { data: categoryData } = useGetCategoriesQuery("");
+    console.log(categoryData);
     // if (!isLoading) return <div>Loading...</div>
     return (
         <div>
-            
-            <div className='grid grid-cols-6'>
-                {
-                    categoryData?.data?.map((category: TCategory) => <div key={category?._id}>
+            <div className="grid grid-cols-6">
+                {categoryData?.data?.map((category: TCategory) => (
+                    <div key={category?._id}>
                         <Link
                             href={`/categories/${category?._id}`}
                             className="flex flex-col items-center gap-3 flex-wrap">
@@ -40,8 +37,8 @@ const Categories = () => {
                                 </div>
                             </div>
                         </Link>
-                    </div>)
-                }
+                    </div>
+                ))}
             </div>
         </div>
     );
