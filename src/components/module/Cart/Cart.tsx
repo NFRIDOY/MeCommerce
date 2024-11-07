@@ -8,7 +8,14 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 
 export interface TCartProduct extends TProduct {
-    quantity : number;
+    quantity: number;
+}
+
+export interface TOrder {
+    date: string;
+    user: string;
+    products: TCartProduct[];
+    payableAmount: number;
 }
 
 const Cart = () => {
@@ -111,7 +118,7 @@ const Cart = () => {
                     <h3 className="text-gray-900 font-semibold">
                         {/* Total: ${(totalAmount + order?.deliveryFee).toFixed(2)} */}
                         Total: ${(totalAmount).toFixed(2)}
-                        
+
                     </h3>
                     {totalAmount == 0 ? (
                         <button
@@ -122,7 +129,7 @@ const Cart = () => {
                         </button>
                     ) : (
                         <Link
-                            href={"/confimOrder"}
+                            href={"/checkout"}
                             // TODO: Dispatch // Confirm that the order
                             className="py-2 px-4 bg-primary hover:bg-green-800 text-white rounded-lg"
                             type="submit">

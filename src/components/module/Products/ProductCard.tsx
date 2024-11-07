@@ -46,7 +46,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                         <div className="card-actions  w-full">
                             {/* <button className="btn btn-accent" onClick={() => handleAddToCart(product)}>Order Now</button> */}
                             {product?.stockQuantity ? (
-                                <button
+                                <Link href="/cart" 
                                     className="btn btn-accent  w-full"
                                     onClick={() =>
                                         dispatch(
@@ -54,7 +54,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                                         )
                                     }>
                                     Order Now
-                                </button>
+                                </Link>
                             ) : (
                                 <button
                                     className="btn btn-accent w-full"
