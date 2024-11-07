@@ -5,7 +5,7 @@ export const baseApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl:
             process.env.NODE_ENV === "production"
-            ? `${process.env.GLOBAL_SERVER_URL}`
+            ? `https://mecommerce-server.vercel.app/api`
             : `http://localhost:5000/api`,
 
         credentials: "include", // Include cookies with requests

@@ -26,12 +26,12 @@ export const cartSlice = createSlice({
             );
             // if (existingItem?.inventory.quantity) {
             if (existingItem) {
-                existingItem.quantity += action.payload.quantity;
+                // existingItem.quantity += action.payload.quantity;
             } else {
                 state.products.push(action.payload);
             }
 
-            state.totalAmount += action.payload.price * action.payload.quantity;
+            // state.totalAmount += action.payload.price * action.payload.quantity;
         },
         // id as payload for removing from cart
         removeFromCart: (state, action: PayloadAction<string>) => {

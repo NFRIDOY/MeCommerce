@@ -1,231 +1,231 @@
-import { FormEvent, useState, useEffect } from "react";
-import useAxios from "../../hooks/useAxios";
-import { useQuery } from "@tanstack/react-query";
-import { TCategory } from "../../utils/types/category.interface";
+// import { FormEvent, useState, useEffect } from "react";
+// import useAxios from "../../hooks/useAxios";
+// import { useQuery } from "@tanstack/react-query";
+// import { TCategory } from "../../utils/types/category.interface";
 
-export type TInventory = {
-    quantity: number;
-    inStock: boolean;
-};
+// export type TInventory = {
+//     quantity: number;
+//     inStock: boolean;
+// };
 
-export default function AddProductForm() {
-    const [title, setTitle] = useState("");
-    const [price, setPrice] = useState("");
-    const [image, setImage] = useState("");
-    const [description, setDescription] = useState("");
-    const [category, setCategory] = useState<string>(""); // Initialize as an empty string
-    const [quantity, setQuantity] = useState("");
-    const [rating, setRating] = useState("");
+// export default function AddProductForm() {
+//     const [title, setTitle] = useState("");
+//     const [price, setPrice] = useState("");
+//     const [image, setImage] = useState("");
+//     const [description, setDescription] = useState("");
+//     const [category, setCategory] = useState<string>(""); // Initialize as an empty string
+//     const [quantity, setQuantity] = useState("");
+//     const [rating, setRating] = useState("");
 
-    // Declare Axios instance
-    const axios = useAxios();
+//     // Declare Axios instance
+//     const axios = useAxios();
 
-    // Fetching categories
-    const {
-        isLoading: isPendingCategory,
-        error: errorCategory,
-        data: categoryData,
-        // refetch: refetchCategory,
-    } = useQuery({
-        queryKey: ["category"],
-        queryFn: async () =>
-            await axios.get(`/category`).then((res) => res.data),
-    });
+//     // Fetching categories
+//     const {
+//         isLoading: isPendingCategory,
+//         error: errorCategory,
+//         data: categoryData,
+//         // refetch: refetchCategory,
+//     } = useQuery({
+//         queryKey: ["category"],
+//         queryFn: async () =>
+//             await axios.get(`/category`).then((res) => res.data),
+//     });
 
-    // Set the first category as default when data is loaded
-    useEffect(() => {
-        if (categoryData?.data?.length && !category) {
-            setCategory(""); // Initially, no category is selected
-        }
-    }, [categoryData, category]);
+//     // Set the first category as default when data is loaded
+//     useEffect(() => {
+//         if (categoryData?.data?.length && !category) {
+//             setCategory(""); // Initially, no category is selected
+//         }
+//     }, [categoryData, category]);
 
-    // Find the selected category object by ID
-    const selectedCategory = categoryData?.data?.find(
-        (categoryObj: TCategory) => categoryObj?._id === category
-    );
+//     // Find the selected category object by ID
+//     const selectedCategory = categoryData?.data?.find(
+//         (categoryObj: TCategory) => categoryObj?._id === category
+//     );
 
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        const formData = {
-            title,
-            price: parseFloat(price),
-            image,
-            description,
-            category: selectedCategory,
-            inventory: {
-                quantity: parseFloat(quantity),
-                inStock: parseFloat(quantity) ? true : false,
-            },
-            rating: parseFloat(rating),
-        };
-        // console.log("Form Data:", formData);
-        // Send Data to server
-        axios.post("/products", formData).then((res) => {
-            // console.log(res);
-            if (res?.data?.success) {
-                // console.log("Success");
-            } else {
-                // console.log("Something went wrong::", res);
-            }
-        });
-    };
+//     const handleSubmit = (e: FormEvent) => {
+//         e.preventDefault();
+//         const formData = {
+//             title,
+//             price: parseFloat(price),
+//             image,
+//             description,
+//             category: selectedCategory,
+//             inventory: {
+//                 quantity: parseFloat(quantity),
+//                 inStock: parseFloat(quantity) ? true : false,
+//             },
+//             rating: parseFloat(rating),
+//         };
+//         // console.log("Form Data:", formData);
+//         // Send Data to server
+//         axios.post("/products", formData).then((res) => {
+//             // console.log(res);
+//             if (res?.data?.success) {
+//                 // console.log("Success");
+//             } else {
+//                 // console.log("Something went wrong::", res);
+//             }
+//         });
+//     };
 
-    if (isPendingCategory) return <p>Loading categories...</p>;
-    if (errorCategory) return <p>Error loading categories.</p>;
+//     if (isPendingCategory) return <p>Loading categories...</p>;
+//     if (errorCategory) return <p>Error loading categories.</p>;
 
-    return (
-        <div className="w-full">
-            <section className="w-full">
-                <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
-                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8 w-full border-0">
-                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl w-full">
-                            Add Plant To Inventory
-                        </h1>
-                        <form onSubmit={handleSubmit}>
-                            <div className="gap-y-2 gap-x-2 mb-2 w-full grid grid-cols-2">
-                                <div>
-                                    <label
-                                        htmlFor="title"
-                                        className="block mb-2 text-sm font-medium text-gray-900">
-                                        Title
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="title"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
-                                        placeholder="Title"
-                                        value={title}
-                                        onChange={(e) =>
-                                            setTitle(e.target.value)
-                                        }
-                                    />
-                                </div>
-                                <div>
-                                    <label
-                                        htmlFor="price"
-                                        className="block mb-2 text-sm font-medium text-gray-900">
-                                        Price
-                                    </label>
-                                    <input
-                                        type="number"
-                                        id="price"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
-                                        placeholder="Price"
-                                        value={price}
-                                        onChange={(e) =>
-                                            setPrice(e.target.value)
-                                        }
-                                    />
-                                </div>
-                                <div>
-                                    <label
-                                        htmlFor="image"
-                                        className="block mb-2 text-sm font-medium text-gray-900">
-                                        Image URL
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="image"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
-                                        placeholder="Image"
-                                        value={image}
-                                        onChange={(e) =>
-                                            setImage(e.target.value)
-                                        }
-                                    />
-                                </div>
-                                <div>
-                                    <label
-                                        htmlFor="description"
-                                        className="block mb-2 text-sm font-medium text-gray-900">
-                                        Description
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="description"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
-                                        placeholder="Description"
-                                        value={description}
-                                        onChange={(e) =>
-                                            setDescription(e.target.value)
-                                        }
-                                    />
-                                </div>
+//     return (
+//         <div className="w-full">
+//             <section className="w-full">
+//                 <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
+//                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8 w-full border-0">
+//                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl w-full">
+//                             Add Plant To Inventory
+//                         </h1>
+//                         <form onSubmit={handleSubmit}>
+//                             <div className="gap-y-2 gap-x-2 mb-2 w-full grid grid-cols-2">
+//                                 <div>
+//                                     <label
+//                                         htmlFor="title"
+//                                         className="block mb-2 text-sm font-medium text-gray-900">
+//                                         Title
+//                                     </label>
+//                                     <input
+//                                         type="text"
+//                                         id="title"
+//                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+//                                         placeholder="Title"
+//                                         value={title}
+//                                         onChange={(e) =>
+//                                             setTitle(e.target.value)
+//                                         }
+//                                     />
+//                                 </div>
+//                                 <div>
+//                                     <label
+//                                         htmlFor="price"
+//                                         className="block mb-2 text-sm font-medium text-gray-900">
+//                                         Price
+//                                     </label>
+//                                     <input
+//                                         type="number"
+//                                         id="price"
+//                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+//                                         placeholder="Price"
+//                                         value={price}
+//                                         onChange={(e) =>
+//                                             setPrice(e.target.value)
+//                                         }
+//                                     />
+//                                 </div>
+//                                 <div>
+//                                     <label
+//                                         htmlFor="image"
+//                                         className="block mb-2 text-sm font-medium text-gray-900">
+//                                         Image URL
+//                                     </label>
+//                                     <input
+//                                         type="text"
+//                                         id="image"
+//                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+//                                         placeholder="Image"
+//                                         value={image}
+//                                         onChange={(e) =>
+//                                             setImage(e.target.value)
+//                                         }
+//                                     />
+//                                 </div>
+//                                 <div>
+//                                     <label
+//                                         htmlFor="description"
+//                                         className="block mb-2 text-sm font-medium text-gray-900">
+//                                         Description
+//                                     </label>
+//                                     <input
+//                                         type="text"
+//                                         id="description"
+//                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+//                                         placeholder="Description"
+//                                         value={description}
+//                                         onChange={(e) =>
+//                                             setDescription(e.target.value)
+//                                         }
+//                                     />
+//                                 </div>
 
-                                <div>
-                                    <label
-                                        htmlFor="quantity"
-                                        className="block mb-2 text-sm font-medium text-gray-900">
-                                        Quantity
-                                    </label>
-                                    <input
-                                        type="number"
-                                        id="quantity"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
-                                        placeholder="Quantity"
-                                        value={quantity}
-                                        onChange={(e) =>
-                                            setQuantity(e.target.value)
-                                        }
-                                    />
-                                </div>
-                                <div>
-                                    <label
-                                        htmlFor="rating"
-                                        className="block mb-2 text-sm font-medium text-gray-900">
-                                        Rating
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="rating"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
-                                        placeholder="Rating"
-                                        value={rating}
-                                        onChange={(e) =>
-                                            setRating(e.target.value)
-                                        }
-                                    />
-                                </div>
-                                <div>
-                                    <label
-                                        htmlFor="category"
-                                        className="block mb-2 text-sm font-medium text-gray-900 w-full">
-                                        Category
-                                    </label>
-                                    <div>
-                                        <select
-                                            value={category}
-                                            onChange={(e) =>
-                                                setCategory(e.target.value)
-                                            }
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
-                                            <option value="" disabled>
-                                                Select Category
-                                            </option>
-                                            {categoryData?.data?.map(
-                                                (categoryObj: TCategory) => (
-                                                    <option
-                                                        key={categoryObj?._id}
-                                                        value={
-                                                            categoryObj?._id
-                                                        }>
-                                                        {categoryObj?.title}
-                                                    </option>
-                                                )
-                                            )}
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                ADD
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section>
-        </div>
-    );
-}
+//                                 <div>
+//                                     <label
+//                                         htmlFor="quantity"
+//                                         className="block mb-2 text-sm font-medium text-gray-900">
+//                                         Quantity
+//                                     </label>
+//                                     <input
+//                                         type="number"
+//                                         id="quantity"
+//                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+//                                         placeholder="Quantity"
+//                                         value={quantity}
+//                                         onChange={(e) =>
+//                                             setQuantity(e.target.value)
+//                                         }
+//                                     />
+//                                 </div>
+//                                 <div>
+//                                     <label
+//                                         htmlFor="rating"
+//                                         className="block mb-2 text-sm font-medium text-gray-900">
+//                                         Rating
+//                                     </label>
+//                                     <input
+//                                         type="text"
+//                                         id="rating"
+//                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+//                                         placeholder="Rating"
+//                                         value={rating}
+//                                         onChange={(e) =>
+//                                             setRating(e.target.value)
+//                                         }
+//                                     />
+//                                 </div>
+//                                 <div>
+//                                     <label
+//                                         htmlFor="category"
+//                                         className="block mb-2 text-sm font-medium text-gray-900 w-full">
+//                                         Category
+//                                     </label>
+//                                     <div>
+//                                         <select
+//                                             value={category}
+//                                             onChange={(e) =>
+//                                                 setCategory(e.target.value)
+//                                             }
+//                                             className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
+//                                             <option value="" disabled>
+//                                                 Select Category
+//                                             </option>
+//                                             {categoryData?.data?.map(
+//                                                 (categoryObj: TCategory) => (
+//                                                     <option
+//                                                         key={categoryObj?._id}
+//                                                         value={
+//                                                             categoryObj?._id
+//                                                         }>
+//                                                         {categoryObj?.title}
+//                                                     </option>
+//                                                 )
+//                                             )}
+//                                         </select>
+//                                     </div>
+//                                 </div>
+//                             </div>
+//                             <button
+//                                 type="submit"
+//                                 className="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+//                                 ADD
+//                             </button>
+//                         </form>
+//                     </div>
+//                 </div>
+//             </section>
+//         </div>
+//     );
+// }
