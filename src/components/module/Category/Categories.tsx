@@ -7,8 +7,8 @@ import { TCategory } from '@/types/category.interface';
 import Image from 'next/image';
 
 const Categories = () => {
-    const {data: categoryData, 
-        refetch
+    const {
+        data: categoryData, 
      } = useGetCategoriesQuery("");
     console.log(categoryData)
     // if (!isLoading) return <div>Loading...</div>
