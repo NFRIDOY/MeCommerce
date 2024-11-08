@@ -110,13 +110,13 @@ const Navbar = () => {
                                 Home
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link
                                 href={"/user/dashboard"}
                                 className="btn btn-secondary btn-sm">
                                 User Dashboard
                             </Link>
-                        </li>
+                        </li> */}
                         <li>
                             <Link
                                 href={"/admin"}

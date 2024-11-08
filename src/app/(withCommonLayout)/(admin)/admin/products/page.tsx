@@ -1,5 +1,4 @@
 import AddProductForm from '@/components/module/Forms/AddProductForm';
-import Products from '@/components/module/Products/Products';
 import React from 'react';
 
 const ProductManagmentPage = () => {
@@ -8,7 +7,7 @@ const ProductManagmentPage = () => {
             <div>
             <AddProductForm />
             </div>
-            <Products />
+            {/* <Products /> */}
         </div>
     );
 };
