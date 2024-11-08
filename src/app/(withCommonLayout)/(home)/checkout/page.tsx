@@ -1,11 +1,10 @@
-import Checkout from '@/components/module/Checkout/Checkout';
 import React from 'react';
 
 const checkoutPage = () => {
     return (
         <div>
-            checkoutPage
-            <Checkout />
+            <h1 className='text-center '>Welcome to Checkout </h1>
+            {/* <Checkout /> */}
         </div>
     );
 };
